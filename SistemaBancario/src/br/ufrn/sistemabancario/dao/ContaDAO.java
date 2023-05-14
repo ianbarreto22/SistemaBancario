@@ -22,7 +22,11 @@ public class ContaDAO {
 
     }
 	
-	
+	 public double consultarSaldo(long numeroDaConta) {
+	        Conta c = contas.get(numeroDaConta);
+
+	        return c.getSaldo();
+	    }
 	
 	
 }
