@@ -27,6 +27,22 @@ public class ContaDAO {
 
 	        return c.getSaldo();
 	    }
+	 
+	 public void credito(long numeroDaConta, double valor) {
+
+	        Conta c = contas.get(numeroDaConta);
+
+	        double novoSaldo = c.getSaldo() + valor;
+	        c.setSaldo(novoSaldo);
+	    }
+
+	    public void debito(long numeroDaConta, double valor) {
+
+	        Conta c = contas.get(numeroDaConta);
+
+	        double novoSaldo = c.getSaldo() - valor;
+	        c.setSaldo(novoSaldo);
+	    }
 	
 	
 }
