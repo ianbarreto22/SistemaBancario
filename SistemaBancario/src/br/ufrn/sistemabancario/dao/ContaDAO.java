@@ -15,38 +15,14 @@ public class ContaDAO {
 	}
 	
 	public void cadastrarConta(long numeroDaConta) {
-		
-		
-		Conta novaConta = new Conta(numeroDaConta);
-		contas.put(numeroDaConta, novaConta);
-		
-	}
+
+
+        Conta novaConta = new Conta(numeroDaConta);
+        contas.put(numeroDaConta, novaConta);
+
+    }
 	
-	public double consultarSaldo(long numeroDaConta) {
-		Conta c = contas.get(numeroDaConta);
-		
-		return c.getSaldo();
-	}
 	
-	public void credito(long numeroDaConta, double valor) {
-		
-		Conta c = contas.get(numeroDaConta);
-		
-		double novoSaldo = c.getSaldo() + valor;
-		c.setSaldo(novoSaldo);
-	}
-	
-	public void debito(long numeroDaConta, double valor) {
-		
-		Conta c = contas.get(numeroDaConta);
-		
-		double novoSaldo = c.getSaldo() - valor;
-		c.setSaldo(novoSaldo);
-	}
-	
-	public void transferencia(long origem, long destino, double valor) {
-		//TODO
-	}
 	
 	
 }
