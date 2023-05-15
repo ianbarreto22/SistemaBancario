@@ -1,2 +1,0 @@
-INDEX VERSION 1.132+C:\Users\decas\Documents\projects\SistemaBancario\src\.metadata\.plugins\org.eclipse.jdt.core
-2960758626.index
