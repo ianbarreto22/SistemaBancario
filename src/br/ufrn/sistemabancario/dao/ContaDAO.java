@@ -44,7 +44,7 @@ public class ContaDAO {
 	    }
 
 	 public void debito(long numeroDaConta, double valor) throws OperacaoIlegalException {
-		 	if(valor > contas.get(numeroDaConta).getSaldo()) throw new OperacaoIlegalException("Valor inválido - maior do que o saldo");
+		 	//if(valor > contas.get(numeroDaConta).getSaldo()) throw new OperacaoIlegalException("Valor inválido - maior do que o saldo");
 		 	if(valor < 0 ) throw new OperacaoIlegalException("Valor inválido");
 
 	        Conta c = contas.get(numeroDaConta);
