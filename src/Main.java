@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import br.ufrn.sistemabancario.dao.ContaDAO;
+import br.ufrn.sistemabancario.model.TipoConta;
 import br.ufrn.sistemabancario.model.exceptions.OperacaoIlegalException;
 
 
@@ -28,12 +29,30 @@ public class Main {
 				}
 			}
 			else if(opcao == 2) {
+					
 						
 					System.out.println("Digite um número para a sua conta entre 1 e 8 caracteres: \n");
 					int novoNumConta = sc.nextInt();
 					try {
-						dao.cadastrarConta(novoNumConta);
-						menuPrincipal(novoNumConta, dao);
+						System.out.println("Escolha um tipo de conta: \n");
+						opcoesConta();
+						
+						int tipoConta = sc.nextInt();
+						
+						switch(tipoConta) {
+						case 1:
+							dao.cadastrarConta(novoNumConta, TipoConta.CONTA);
+							menuPrincipal(novoNumConta, dao);
+							break;
+						case 2:
+							dao.cadastrarConta(novoNumConta, TipoConta.CONTABONUS);
+							menuPrincipal(novoNumConta, dao);
+							break;
+						default:
+							System.out.println("Um erro ocorreu: Tipo de conta inválida \n");
+							break;
+						}
+						
 					} catch(OperacaoIlegalException e) {
 						System.out.println("Um erro ocorreu: " + e.getMessage() + "\n");
 					}
@@ -43,6 +62,12 @@ public class Main {
 		}
 		
 
+	}
+	
+	private static void opcoesConta() {
+		System.out.println("1 - Conta padrão;");
+		System.out.println("2 - Conta Bônus;");
+		System.out.println();
 	}
 
 	private static void menuPrincipal(int numConta, ContaDAO dao) {

@@ -3,6 +3,8 @@ package br.ufrn.sistemabancario.dao;
 import java.util.HashMap;
 
 import br.ufrn.sistemabancario.model.Conta;
+import br.ufrn.sistemabancario.model.ContaBonus;
+import br.ufrn.sistemabancario.model.TipoConta;
 import br.ufrn.sistemabancario.model.exceptions.OperacaoIlegalException;
 
 public class ContaDAO {
@@ -19,14 +21,23 @@ public class ContaDAO {
 		return this.contas.containsKey(numeroDaConta);
 	}
 	
-	public void cadastrarConta(long numeroDaConta) throws OperacaoIlegalException {
+	public void cadastrarConta(long numeroDaConta, TipoConta tipo) throws OperacaoIlegalException {
 		if(this.contas.containsKey(numeroDaConta)) {
 			throw new OperacaoIlegalException("Número já utilizado");
 		 }
-
-        Conta novaConta = new Conta(numeroDaConta);
-        contas.put(numeroDaConta, novaConta);
-
+		
+		switch(tipo) {
+		case CONTA:
+			Conta novaConta = new Conta(numeroDaConta);
+	        contas.put(numeroDaConta, novaConta);
+	        break;
+		case CONTABONUS:
+			ContaBonus novaContaBonus = new ContaBonus(numeroDaConta);
+			contas.put(numeroDaConta, novaContaBonus);
+			break;
+		default:
+			break;
+		}
     }
 	
 	 public double consultarSaldo(long numeroDaConta) {
@@ -41,6 +52,13 @@ public class ContaDAO {
 
 	        double novoSaldo = c.getSaldo() + valor;
 	        c.setSaldo(novoSaldo);
+	        
+	        if(c instanceof ContaBonus) {
+	        	int pontos = (int) valor/100;
+				int novaPontuacao = ((ContaBonus) c).getPontuacao() + pontos;
+				((ContaBonus) c).setPontuacao(novaPontuacao);
+				System.out.println("PONTUAÇÃO: " + novaPontuacao);
+	        }
 	    }
 
 	 public void debito(long numeroDaConta, double valor) throws OperacaoIlegalException {
@@ -55,15 +73,29 @@ public class ContaDAO {
 	
 	        double novoSaldo = c.getSaldo() - valor;
 	        c.setSaldo(novoSaldo);
+	        
+	 
 	    }
 	    
 	 public void transferir(long numContaOrigem, long numContaDestino, double valor) throws OperacaoIlegalException {
+		 
 		 if(!this.contas.containsKey(numContaDestino)) {
 			throw new OperacaoIlegalException("Conta de destino não existe");
 		 }
 		 
 		 this.debito(numContaOrigem, valor);
-		 this.credito(numContaDestino, valor);
+		 
+		 Conta destino = contas.get(numContaDestino);
+		 double saldoDestino = destino.getSaldo() + valor;
+		 destino.setSaldo(saldoDestino);
+		 
+		 if(destino instanceof ContaBonus) {
+			 int pontos = (int) valor/200;
+			 int novaPontuacao = ((ContaBonus) destino).getPontuacao() + pontos;
+			 ((ContaBonus) destino).setPontuacao(novaPontuacao);
+			 System.out.println("PONTUAÇÃO: " + novaPontuacao);
+		 }
+		 
 	 }
 	
 	
