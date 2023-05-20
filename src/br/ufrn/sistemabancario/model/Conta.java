@@ -1,8 +1,8 @@
 package br.ufrn.sistemabancario.model;
 
 public class Conta {
-	private long numero;
-	private double saldo;
+	protected long numero;
+	protected double saldo;
 	
 	
 	public Conta(long numero) {
