@@ -36,7 +36,7 @@ public class ContaDAO {
 	    }
 	 
 	 public void credito(long numeroDaConta, double valor) throws OperacaoIlegalException {
-		 	if(valor < 0 ) throw new OperacaoIlegalException("Valor inválido");
+		 	if(valor < 0 ) throw new OperacaoIlegalException("Valor não pode ser negativo");
 	        Conta c = contas.get(numeroDaConta);
 
 	        double novoSaldo = c.getSaldo() + valor;
@@ -50,7 +50,7 @@ public class ContaDAO {
 		 		throw new OperacaoIlegalException("Saldo da conta insuficiente!");
 		 	}
 		 	
-		 	if(valor < 0 ) throw new OperacaoIlegalException("Valor inválido");
+		 	if(valor < 0 ) throw new OperacaoIlegalException("Valor não pode ser negativo");
 
 	
 	        double novoSaldo = c.getSaldo() - valor;
