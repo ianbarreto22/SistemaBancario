@@ -11,10 +11,9 @@ import br.ufrn.sistemabancario.model.exceptions.OperacaoIlegalException;
 public class ContaDAO {
 
 	private HashMap<Long, Conta> contas;
-	
+
 	private static int BONUS_TRANSFERENCIA = 150;
 	private static int BONUS_CREDITO = 100;
-	
 
 	public ContaDAO() {
 		super();
@@ -44,16 +43,16 @@ public class ContaDAO {
 				break;
 		}
 	}
-	
+
 	public void cadastrarContaPoupanca(long numeroDaConta, double saldoInicial) throws OperacaoIlegalException {
 		if (this.contas.containsKey(numeroDaConta)) {
 			throw new OperacaoIlegalException("Número já utilizado");
 		}
-		
+
 		ContaPoupanca novaConta = new ContaPoupanca(numeroDaConta, saldoInicial);
 		contas.put(numeroDaConta, novaConta);
 	}
-	
+
 	public void cadastrarContaSimples(long numeroDaConta, double saldo) {
 		Conta novaConta = new Conta(numeroDaConta, saldo);
 		contas.put(numeroDaConta, novaConta);
@@ -84,12 +83,16 @@ public class ContaDAO {
 	public void debito(long numeroDaConta, double valor) throws OperacaoIlegalException {
 		Conta c = contas.get(numeroDaConta);
 
-		if (c.getSaldo() < valor) {
-			throw new OperacaoIlegalException("Saldo da conta insuficiente!");
-		}
-
 		if (valor < 0)
 			throw new OperacaoIlegalException("Valor não pode ser negativo");
+
+		if (!(c instanceof ContaPoupanca)) {
+			if (c.getSaldo() + 1000 < valor) {
+				throw new OperacaoIlegalException("Saldo da conta insuficiente! O limite para saldo negativo é R$ -1.000,00");
+			}
+		} else if (c.getSaldo() < valor) {
+			throw new OperacaoIlegalException("Saldo da conta insuficiente!");
+		}
 
 		double novoSaldo = c.getSaldo() - valor;
 		c.setSaldo(novoSaldo);
@@ -113,6 +116,10 @@ public class ContaDAO {
 
 		if (!this.contas.containsKey(numContaDestino)) {
 			throw new OperacaoIlegalException("Conta de destino não existe");
+		}
+
+		if (numContaOrigem == numContaDestino) {
+			throw new OperacaoIlegalException("Operação inválida!");
 		}
 
 		this.debito(numContaOrigem, valor);
