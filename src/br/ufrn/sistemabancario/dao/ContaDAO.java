@@ -36,12 +36,18 @@ public class ContaDAO {
 				ContaBonus novaContaBonus = new ContaBonus(numeroDaConta);
 				contas.put(numeroDaConta, novaContaBonus);
 				break;
-			case CONTAPOUPANCA:
-				ContaPoupanca novContaPoupanca = new ContaPoupanca(numeroDaConta);
-				contas.put(numeroDaConta, novContaPoupanca);
 			default:
 				break;
 		}
+	}
+	
+	public void cadastrarContaPoupanca(long numeroDaConta, double saldoInicial) throws OperacaoIlegalException {
+		if (this.contas.containsKey(numeroDaConta)) {
+			throw new OperacaoIlegalException("Número já utilizado");
+		}
+		
+		ContaPoupanca novaConta = new ContaPoupanca(numeroDaConta, saldoInicial);
+		contas.put(numeroDaConta, novaConta);
 	}
 
 	public double consultarSaldo(long numeroDaConta) {
