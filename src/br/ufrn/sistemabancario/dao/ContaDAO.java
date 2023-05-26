@@ -11,6 +11,10 @@ import br.ufrn.sistemabancario.model.exceptions.OperacaoIlegalException;
 public class ContaDAO {
 
 	private HashMap<Long, Conta> contas;
+	
+	private static int BONUS_TRANSFERENCIA = 150;
+	private static int BONUS_CREDITO = 100;
+	
 
 	public ContaDAO() {
 		super();
@@ -49,6 +53,11 @@ public class ContaDAO {
 		ContaPoupanca novaConta = new ContaPoupanca(numeroDaConta, saldoInicial);
 		contas.put(numeroDaConta, novaConta);
 	}
+	
+	public void cadastrarContaSimples(long numeroDaConta, double saldo) {
+		Conta novaConta = new Conta(numeroDaConta, saldo);
+		contas.put(numeroDaConta, novaConta);
+	}
 
 	public double consultarSaldo(long numeroDaConta) {
 		Conta c = contas.get(numeroDaConta);
@@ -65,7 +74,7 @@ public class ContaDAO {
 		c.setSaldo(novoSaldo);
 
 		if (c instanceof ContaBonus) {
-			int pontos = (int) valor / 100;
+			int pontos = (int) valor / BONUS_CREDITO;
 			int novaPontuacao = ((ContaBonus) c).getPontuacao() + pontos;
 			((ContaBonus) c).setPontuacao(novaPontuacao);
 			System.out.println("PONTUAÇÃO: " + novaPontuacao);
@@ -113,10 +122,10 @@ public class ContaDAO {
 		destino.setSaldo(saldoDestino);
 
 		if (destino instanceof ContaBonus) {
-			int pontos = (int) valor / 200;
+			int pontos = (int) valor / BONUS_TRANSFERENCIA;
 			int novaPontuacao = ((ContaBonus) destino).getPontuacao() + pontos;
 			((ContaBonus) destino).setPontuacao(novaPontuacao);
-			System.out.println("PONTUAÇÃO: " + novaPontuacao);
+			System.out.println("PONTUAÇÃO DESTINO: " + novaPontuacao);
 		}
 
 	}

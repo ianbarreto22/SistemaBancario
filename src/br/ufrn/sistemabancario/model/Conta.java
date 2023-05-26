@@ -10,6 +10,13 @@ public class Conta {
 		this.numero = numero;
 		this.saldo = 0;
 	}
+	
+	public Conta(long numero, double saldo) {
+		super();
+		this.numero = numero;
+		this.saldo = saldo;
+	}
+	
 	public long getNumero() {
 		return numero;
 	}

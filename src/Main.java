@@ -34,10 +34,16 @@ public class Main {
 					opcoesConta();
 
 					int tipoConta = sc.nextInt();
+					
+					double saldoInicial;
 
 					switch (tipoConta) {
 						case 1:
-							dao.cadastrarConta(novoNumConta, TipoConta.CONTA);
+							
+							System.out.println("Digite um saldo inicial para sua conta: ");
+							saldoInicial = sc.nextDouble();
+							
+							dao.cadastrarContaSimples(novoNumConta, saldoInicial);
 							menuPrincipal(novoNumConta, dao);
 							break;
 						case 2:
@@ -47,7 +53,7 @@ public class Main {
 						case 3:
 							
 							System.out.println("Digite um saldo inicial para sua conta:");
-							double saldoInicial = sc.nextDouble();
+							saldoInicial = sc.nextDouble();
 							
 							dao.cadastrarContaPoupanca(novoNumConta, saldoInicial);
 							menuPrincipal(novoNumConta, dao);
