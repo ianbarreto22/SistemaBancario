@@ -37,7 +37,11 @@ public class Main {
 
 					switch (tipoConta) {
 						case 1:
-							dao.cadastrarConta(novoNumConta, TipoConta.CONTA);
+							
+							System.out.println("Digite um saldo inicial para sua conta: ");
+							double saldoInicial = sc.nextDouble();
+							
+							dao.cadastrarContaSimples(novoNumConta, saldoInicial);
 							menuPrincipal(novoNumConta, dao);
 							break;
 						case 2:
