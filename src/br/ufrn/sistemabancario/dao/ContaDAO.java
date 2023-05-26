@@ -43,6 +43,11 @@ public class ContaDAO {
 				break;
 		}
 	}
+	
+	public void cadastrarContaSimples(long numeroDaConta, double saldo) {
+		Conta novaConta = new Conta(numeroDaConta, saldo);
+		contas.put(numeroDaConta, novaConta);
+	}
 
 	public double consultarSaldo(long numeroDaConta) {
 		Conta c = contas.get(numeroDaConta);
