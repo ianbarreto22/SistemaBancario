@@ -4,7 +4,7 @@ Projeto para a disciplina Gerência de Configuração e Mudanças
 
 ## Organização e Histórico do Repositório
 
-![Git Tree Structure](Assets/git-tree-structure.png)
+![Git Tree Structure](assets/git-tree-structure.png)
 
 Para a realização desse trabalho decidimos adotar o fluxo GitLab Flow, que possui 3 branches principais.
 
