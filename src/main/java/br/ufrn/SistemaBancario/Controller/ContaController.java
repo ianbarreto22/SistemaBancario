@@ -24,7 +24,7 @@ import br.ufrn.SistemaBancario.model.exceptions.OperacaoIlegalException;
 public class ContaController {
 	
 	private ContaDAO dao = new ContaDAO();
-	private int counter = 0;
+	private int counter = 1;
 	
 	@PostMapping
 	public ResponseEntity<JsonNode> cadastrarConta(@RequestBody JsonNode body) {
@@ -86,8 +86,9 @@ public class ContaController {
 				response.put("pontuacao", ((ContaBonus) c).getPontuacao());
 			}
 		} catch (OperacaoIlegalException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			response.put("error", e.getMessage());
+			response.put("id", -1);
 		}
 		
 		return ResponseEntity.ok(response);
