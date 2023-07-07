@@ -50,7 +50,7 @@ jobs:
     needs: [resolver-dependencias, build, testes-unitarios]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/chevkout@v3
+      - uses: actions/checkout@v3
       - name: Criando tag...
         run: |
              git config --local user.email "actions@github.com"
