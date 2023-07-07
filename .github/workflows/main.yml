@@ -33,7 +33,7 @@ jobs:
       - name: Build com Maven
         run: mvn -B package --file pom.xml
       - name: Docker Build
-        run: docker build . --file Dockerfile --tag SistemaBancario:latest
+        run: docker build . --file Dockerfile --tag sistemabancario:latest
       
   testes-unitarios:
    runs-on: ubuntu-latest
