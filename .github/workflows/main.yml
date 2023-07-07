@@ -12,39 +12,39 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
       - name: Resolvendo dependências...
-      - run: mvn clean install package
+        run: mvn clean install package
       
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Configurando JDK 17
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
       - name: Build com Maven
-      - run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml
       
   testes-unitarios:
    runs-on: ubuntu-latest
    steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
       - name: Realizando testes unitários...
-      - run: mvn test
+        run: mvn test
 
   criar-tag:
     needs: [resolver-dependencias, build, testes-unitarios]
@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/chevkout@v3
       - name: Criando tag...
-      - run: |
+        run: |
              git config --local user.email "actions@github.com"
              git config --local user.name "GitHub Actions"
              export build_name=build-$(date +'%Y-%m-%d-%H-%M-%S')
