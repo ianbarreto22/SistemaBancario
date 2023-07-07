@@ -76,7 +76,7 @@ public class ContaDAO {
 			int pontos = (int) valor / BONUS_CREDITO;
 			int novaPontuacao = ((ContaBonus) c).getPontuacao() + pontos;
 			((ContaBonus) c).setPontuacao(novaPontuacao);
-			System.out.println("PONTUAÇÃO: " + novaPontuacao);
+			// System.out.println("PONTUAÇÃO: " + novaPontuacao);
 		}
 	}
 
@@ -132,13 +132,13 @@ public class ContaDAO {
 			int pontos = (int) valor / BONUS_TRANSFERENCIA;
 			int novaPontuacao = ((ContaBonus) destino).getPontuacao() + pontos;
 			((ContaBonus) destino).setPontuacao(novaPontuacao);
-			System.out.println("PONTUAÇÃO DESTINO: " + novaPontuacao);
+			// System.out.println("PONTUAÇÃO DESTINO: " + novaPontuacao);
 		}
 
 	}
 
 	public Conta consultarConta(long id) throws OperacaoIlegalException {
-		if(contas.containsKey(id)) {
+		if (contas.containsKey(id)) {
 			return contas.get(id);
 		}
 		throw new OperacaoIlegalException("Conta não existe!");

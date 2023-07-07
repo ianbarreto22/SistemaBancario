@@ -257,7 +257,6 @@ public class Client {
 	}
 	
 	public static void main(String[] args) throws RestRequestException {
-		ContaDAO dao = new ContaDAO();
 		Scanner sc = new Scanner(System.in);
 
 		String opcoesIniciais = "\n 1 - Entrar na sua Conta \n 2 - Cadastrar uma nova conta \n";
@@ -271,7 +270,7 @@ public class Client {
 				System.out.println("Digite o número da sua conta: \n ");
 				int numConta = sc.nextInt();
 				if (entrarConta(numConta) > -1) {
-					menuPrincipal(numConta, dao);
+					menuPrincipal(numConta);
 				} else {
 					System.out.println("Valor inválido! Tente novamente!\n");
 				}
@@ -293,12 +292,12 @@ public class Client {
 							
 							id = cadastrarConta(tipoConta - 1, saldoInicial);
 							System.out.println("Id criado: " + id);
-							menuPrincipal(id, dao);
+							menuPrincipal(id);
 							break;
 						case 2:
 							id = cadastrarConta(tipoConta - 1, saldoInicial);
 							System.out.println("Id criado: " + id);
-							menuPrincipal(id, dao);
+							menuPrincipal(id);
 							break;
 						case 3:
 							
@@ -307,7 +306,7 @@ public class Client {
 							
 							id = cadastrarConta(tipoConta - 1, saldoInicial);
 							System.out.println("Id criado: " + id);
-							menuPrincipal(id, dao);
+							menuPrincipal(id);
 						default:
 							System.out.println("Um erro ocorreu: Tipo de conta inválida \n");
 							break;
@@ -330,7 +329,7 @@ public class Client {
 		System.out.println();
 	}
 
-	private static void menuPrincipal(int numConta, ContaDAO dao) throws RestRequestException {
+	private static void menuPrincipal(int numConta) throws RestRequestException {
 
 		for (;;) {
 			Scanner sc = new Scanner(System.in);
