@@ -34,12 +34,14 @@ public class Main {
 					opcoesConta();
 
 					int tipoConta = sc.nextInt();
+					
+					double saldoInicial;
 
 					switch (tipoConta) {
 						case 1:
 							
 							System.out.println("Digite um saldo inicial para sua conta: ");
-							double saldoInicial = sc.nextDouble();
+							saldoInicial = sc.nextDouble();
 							
 							dao.cadastrarContaSimples(novoNumConta, saldoInicial);
 							menuPrincipal(novoNumConta, dao);
@@ -49,7 +51,11 @@ public class Main {
 							menuPrincipal(novoNumConta, dao);
 							break;
 						case 3:
-							dao.cadastrarConta(novoNumConta, TipoConta.CONTAPOUPANCA);
+							
+							System.out.println("Digite um saldo inicial para sua conta:");
+							saldoInicial = sc.nextDouble();
+							
+							dao.cadastrarContaPoupanca(novoNumConta, saldoInicial);
 							menuPrincipal(novoNumConta, dao);
 						default:
 							System.out.println("Um erro ocorreu: Tipo de conta inválida \n");
