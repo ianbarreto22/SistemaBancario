@@ -45,12 +45,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Executar Snyk
-        uses: snyk/actions/maven-3-jdk-17@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Executar Checkstyle
+        uses: dbelyaev/action-checkstyle@v0.7.4
         with:
-          args: --severity-threshold=high
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
     
   testes-unitarios:
     runs-on: ubuntu-latest
