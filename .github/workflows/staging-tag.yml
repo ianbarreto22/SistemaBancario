@@ -46,7 +46,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Executar Checkstyle
-        uses: mvn checkstyle:checkstyle
+        run: mvn checkstyle:checkstyle
     
   testes-unitarios:
     runs-on: ubuntu-latest
