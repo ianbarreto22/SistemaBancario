@@ -1,0 +1,13 @@
+br\ufrn\SistemaBancario\client\Client.class
+br\ufrn\SistemaBancario\Controller\ContaController$1.class
+br\ufrn\SistemaBancario\model\TipoConta.class
+br\ufrn\SistemaBancario\model\exceptions\RestRequestException.class
+br\ufrn\SistemaBancario\Controller\ContaController.class
+br\ufrn\SistemaBancario\dao\ContaDAO$1.class
+br\ufrn\SistemaBancario\utils\HttpUtils.class
+br\ufrn\SistemaBancario\model\ContaPoupanca.class
+br\ufrn\SistemaBancario\App.class
+br\ufrn\SistemaBancario\dao\ContaDAO.class
+br\ufrn\SistemaBancario\model\ContaBonus.class
+br\ufrn\SistemaBancario\model\exceptions\OperacaoIlegalException.class
+br\ufrn\SistemaBancario\model\Conta.class
