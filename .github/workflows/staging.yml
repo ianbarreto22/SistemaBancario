@@ -1,5 +1,5 @@
-name: staging-tag
-run-name: staging-tag
+name: staging
+run-name: staging
 on:
   push:
     tags:    
