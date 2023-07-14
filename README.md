@@ -14,4 +14,4 @@ Já a branch production contém a versão do código que está em produção e e
 
 Como branch auxiliares utilizamos a feature, que contém novas funcionalidades que estavam sendo implementadas, e que seriam integrada a branch main.
 Utilizamos bugfix criada a partir da staging, para realizar correções na versão que estava sendo estabilizada. As branchs bugfix deveriam ser juntadas a branch main e staging.
-Já a hotfix foi utilizada para a correções de bugs encontrados na versão de produção. A brach era criada a partir da production e feito o merge para a production e staging.
+Já a hotfix foi utilizada para a correções de bugs encontrados na versão em produção. A brach era criada a partir da production e feito o merge para a production e staging.
